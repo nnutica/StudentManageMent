@@ -1,0 +1,29 @@
+<div class="container">
+<h2>Student Management</h2>
+<form [formGroup]="studentForm" (ngSubmit)="addStudent()">
+    <input type="text" formControlName="name" placeholder="name" >
+    <input type="text" formControlName="lastName" placeholder="Lastname" >
+   
+    <button type="submit" [disabled]="studentForm.invalid">Add Student</button>
+</form>
+
+<ul>
+    <li *ngFor="let student of students; let i =index">
+        {{ student.name }} {{ student.lastName }}
+        <button (click)="editStudent(i)">Edit</button>
+      <button (click)="deleteStudent(i)">Delete</button>
+    </li>
+</ul>
+<div *ngIf="editingIndex !== -1">
+    <h3>Edit Student</h3>
+    <form [formGroup]="editStudentForm" (ngSubmit)="updateStudent()">
+        <input type="text" formControlName="name" placeholder="Name" />
+        <input type="text" formControlName="lastName" placeholder="LastName" />
+        <button type="submit" [disabled]="editStudentForm.invalid">Save</button>
+        <button type="button" (click)="cancelEdit()">Cancel</button>
+
+    </form>
+</div>
+
+<h2>Created By Nitinat Loruthai 1650703596</h2>
+</div>
